@@ -105,9 +105,9 @@ let app = new Vue({
       if (!value) 
         return 0;
       if (value >= 1)
-        return value.toFixed(2);
+        return value.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
       
-      return value.toFixed(6);
+      return value.toFixed(6).replace(/\d(?=(\d{3})+\.)/g, '$&,');
     }
   }
 });
