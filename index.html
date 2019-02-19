@@ -8,7 +8,6 @@
 
     <!-- Bootstrap -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://bootswatch.com/simplex/bootstrap.min.css">
     <link rel="stylesheet" href="static/css/style.css">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -20,15 +19,8 @@
   </head>
   <body class="container">
     <h1>Coin Tracker</h1>
-
-    <div class="row">
-      <div class="jumbotron col-xs-offset-2 col-xs-8">
-        <p>
-          
-        </p>
-      </div>
-    </div>
-
+    <br>
+    <br>
     <div id="app">
       <table class="table table-hover">
         <thead>
@@ -47,7 +39,7 @@
             <td>{{ coin.rank }}</td>
             <td><img v-bind:src="getCoinImage(coin.symbol)"> {{ coin.name }}</td>
             <td>{{ coin.symbol }}</td>
-            <td>{{ coin.quotes.USD.price  | currency }}</td>
+            <td>{{ coin.quotes.USD.price  | toCryptoCurrency }}</td>
             <td v-bind:style="getColor(coin.quotes.USD.percent_change_1h)">
               <span v-if="coin.quotes.USD.percent_change_1h > 0">+</span>{{ coin.quotes.USD.percent_change_1h }}%
             </td>
@@ -57,7 +49,7 @@
             <td v-bind:style="getColor(coin.quotes.USD.percent_change_7d)">
               <span v-if="coin.quotes.USD.percent_change_7d > 0">+</span>{{ coin.quotes.USD.percent_change_7d }}%
             </td>
-            <td>{{ coin.quotes.USD.market_cap | currency }}</td>
+            <td>{{ coin.quotes.USD.market_cap | toCryptoCurrency }}</td>
           </tr>
         </tbody>
       </table>
@@ -68,7 +60,7 @@
       <br>
       <br>
       <span style="float:right">
-          Code by - <a href="https://daolavi.com">Dao Lam</a>
+          Data is fetched from CoinMarketCap - <a href="https://coinmarketcap.com">coinmarketcap.com</a>
       </span>
     </p>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
@@ -78,6 +70,7 @@
     <script src="https://unpkg.com/vue"></script>
     <script src="static/js/vue2-filters.min.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.11/lodash.min.js"></script>
     <script src="static/js/app.js"></script>
   </body>
 </html>

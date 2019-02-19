@@ -53,7 +53,9 @@ let app = new Vue({
 
       axios.get(COINMARKETCAP_API_URI + "/v2/ticker/?limit=100")
         .then((resp) => {
-          this.coins = resp.data.data;
+          this.coins = _.orderBy(resp.data.data, function(coin) {
+            return coin.quotes.USD.market_cap;
+          }, ['desc']);
         })
         .catch((err) => {
           console.error(err);
@@ -97,6 +99,16 @@ let app = new Vue({
    */
   created: function () {
     this.getCoinData();
+  },
+  filters: {
+    toCryptoCurrency: function (value) {
+      if (!value) 
+        return 0;
+      if (value >= 1)
+        return value.toFixed(2);
+      
+      return value.toFixed(6);
+    }
   }
 });
 
@@ -109,4 +121,5 @@ let app = new Vue({
  */
 setInterval(() => {
   app.getCoins();
+  console.log('Refresh');
 }, UPDATE_INTERVAL);
