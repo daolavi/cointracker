@@ -91,6 +91,9 @@ let app = new Vue({
     getColor: (num) => {
       return num > 0 ? "color:green;" : "color:red;";
     },
+    getHighlightColor: function(symbol){
+      return symbol === "ADA" ? "background:greenyellow;" : "background:none;";
+    }
   },
 
   /**

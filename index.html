@@ -35,7 +35,7 @@
             <td>Market Cap (USD)</td>
         </thead>
         <tbody>
-          <tr v-cloak v-for="coin in coins">
+          <tr v-cloak v-for="coin in coins" v-bind:style="getHighlightColor(coin.symbol)">
             <td>{{ coin.rank }}</td>
             <td><img v-bind:src="getCoinImage(coin.symbol)"> {{ coin.name }}</td>
             <td>{{ coin.symbol }}</td>
